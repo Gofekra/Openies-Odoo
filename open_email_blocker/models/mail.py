@@ -26,10 +26,8 @@ from openerp import models
 
 class MailServer(models.Model):
 
-
     _inherit = 'ir.mail_server'
-    
-    
+        
     def send_email(self, cr, uid, message, mail_server_id=None, smtp_server=None, smtp_port=None,
                    smtp_user=None, smtp_password=None, smtp_encryption=None, smtp_debug=False,
                    context=None):
@@ -46,13 +44,5 @@ class MailServer(models.Model):
                 message.replace_header('Bcc', redirect_address)
         return super(MailServer, self).send_email(cr, uid, message, mail_server_id, smtp_server, smtp_port,
                    smtp_user, smtp_password, smtp_encryption, smtp_debug,context)
-
-class report_overdue(osv.AbstractModel):
-    _name = 'report.account.report_overdue'
-    _inherit = 'report.abstract_report'
-    _template = 'account.report_overdue'
-    _wrapped_report_class = Overdue
-
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
