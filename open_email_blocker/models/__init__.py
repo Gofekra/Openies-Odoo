@@ -20,27 +20,7 @@
 #
 ##############################################################################
 
-{
-    "name" : "Due Payment Report",
-    "version" : "1.0",
-    "author" : "Openies Services",
-    'website' : 'http://Openies.com',
-    "category" : "Account",
-    "summary": 'Removes No Followup Lines from Due Payment Report',
-    "description": """
-Openies Account Overdue Extend
-========================================
-    A Overdue report Extension
-    Module will restrict the lines in the report which has marked no follow up
-    
-""",
-    "license" : "AGPL-3",
-    "depends" : ['account_followup'],
-    "data" : ['views/report_overdue_payment.xml'],
-    "demo" : [],
-    'auto_install': False,
-    "installable": True,
-    'images': ['static/description/openies_due_payment_extend.png'],
-}
+# import sale
+import account_print_overdue
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

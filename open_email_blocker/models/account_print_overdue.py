@@ -20,27 +20,33 @@
 #
 ##############################################################################
 
-{
-    "name" : "Due Payment Report",
-    "version" : "1.0",
-    "author" : "Openies Services",
-    'website' : 'http://Openies.com',
-    "category" : "Account",
-    "summary": 'Removes No Followup Lines from Due Payment Report',
-    "description": """
-Openies Account Overdue Extend
-========================================
-    A Overdue report Extension
-    Module will restrict the lines in the report which has marked no follow up
+from openerp.osv import osv
+from openerp.addons.account.report.account_print_overdue import Overdue
+
+
+class Overdue(Overdue):
+
+    def __init__(self, cr, uid, name, context):
+        super(Overdue, self).__init__(cr, uid, name, context=context)
+        self.localcontext.update({
+            'getLines': self._lines_get,
+        })
     
-""",
-    "license" : "AGPL-3",
-    "depends" : ['account_followup'],
-    "data" : ['views/report_overdue_payment.xml'],
-    "demo" : [],
-    'auto_install': False,
-    "installable": True,
-    'images': ['static/description/openies_due_payment_extend.png'],
-}
+    def _lines_get(self, partner):
+        moveline_obj = self.pool['account.move.line']
+        movelines = moveline_obj.search(self.cr, self.uid,
+                [('partner_id', '=', partner.id),
+                    ('account_id.type', 'in', ['receivable', 'payable']),
+                    ('state', '<>', 'draft'), ('reconcile_id', '=', False),('blocked', '=', False)])
+        return moveline_obj.browse(self.cr, self.uid, movelines)
+
+
+class report_overdue(osv.AbstractModel):
+    _name = 'report.account.report_overdue'
+    _inherit = 'report.abstract_report'
+    _template = 'account.report_overdue'
+    _wrapped_report_class = Overdue
+
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

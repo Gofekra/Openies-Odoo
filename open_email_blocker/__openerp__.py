@@ -21,26 +21,24 @@
 ##############################################################################
 
 {
-    "name" : "Due Payment Report",
+    "name" : "Openies Email Blocker",
     "version" : "1.0",
     "author" : "Openies Services",
     'website' : 'http://Openies.com',
     "category" : "Account",
-    "summary": 'Removes No Followup Lines from Due Payment Report',
+    "summary": 'Block or redirect email from Odoo',
     "description": """
-Openies Account Overdue Extend
+Openies Email Blocker
 ========================================
-    A Overdue report Extension
-    Module will restrict the lines in the report which has marked no follow up
-    
+    A module provides functionality to block or redirect odoo email by changing the config files.
 """,
     "license" : "AGPL-3",
-    "depends" : ['account_followup'],
-    "data" : ['views/report_overdue_payment.xml'],
+    "depends" : ['mail'],
+    "data" : [],
     "demo" : [],
     'auto_install': False,
     "installable": True,
-    'images': ['static/description/openies_due_payment_extend.png'],
+    'images': ['static/description/openies_email_blocker.png'],
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
