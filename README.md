@@ -1,5 +1,5 @@
-# Odoo-OpenAddons
-Odoo-OpenAddons From Openies Services
+# Openies-Odoo
+Openies-Odoo From Openies Services
 
 ## Odoo Modules Developed By Openies Services
 
